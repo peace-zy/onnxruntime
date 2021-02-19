@@ -331,6 +331,9 @@ def export_onnx_model_from_pt(model_name, opset_version, use_external_data_forma
 
     example_inputs = filter_inputs(example_inputs, input_names)
 
+    if model_name == "Helsinki-NLP/opus-mt-ROMANCE-en":
+        example_inputs["decoder_input_ids"] = example_inputs["input_ids"]
+
     example_outputs = model(**example_inputs)
 
     assert isinstance(example_outputs, (list, tuple)), f"type of output is not list or tuple: {type(example_outputs)}"
@@ -346,20 +349,20 @@ def export_onnx_model_from_pt(model_name, opset_version, use_external_data_forma
         logger.info("Exporting ONNX model to {}".format(onnx_model_path))
         Path(onnx_model_path).parent.mkdir(parents=True, exist_ok=True)
 
-        dynamic_axes, output_names = build_dynamic_axes(example_inputs, example_outputs_flatten)
+        #dynamic_axes, output_names = build_dynamic_axes(example_inputs, example_outputs_flatten)
 
-        replace_torch_functions()
+        #replace_torch_functions()
         torch.onnx.export(model=model,
                           args=tuple(example_inputs.values()),
                           f=onnx_model_path,
                           input_names=list(example_inputs.keys()),
-                          output_names=output_names,
+                          #output_names=output_names,
                           example_outputs=example_outputs,
-                          dynamic_axes=dynamic_axes,
+                          #dynamic_axes=dynamic_axes,
                           do_constant_folding=True,
                           opset_version=opset_version,
                           use_external_data_format=use_external_data_format)
-        restore_torch_functions()
+        #restore_torch_functions()
     else:
         logger.info(f"Skip export since model existed: {onnx_model_path}")
 

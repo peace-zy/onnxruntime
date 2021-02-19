@@ -52,7 +52,7 @@ MODELS = {
     "gpt2-xl": (["input_ids"], 11, True, "gpt2"),
     "distilgpt2": (["input_ids"], 11, False, "gpt2"),  # no past state inputs & outputs
     # Transformer-XL
-    #"transfo-xl-wt103": (["input_ids"], 11, False, "bert"),
+    "transfo-xl-wt103": (["input_ids"], 12, False, "bert"),
     # XLNet
     #"xlnet-base-cased": (["input_ids"], 12, False, "bert"), # Models uses Einsum, which need opset version 12 and PyTorch 1.5.0 or above.
     #"xlnet-large-cased": (["input_ids"], 12, False, "bert"), # Models uses Einsum, which need opset version 12 and PyTorch 1.5.0 or above.
@@ -121,10 +121,24 @@ MODELS = {
     "microsoft/DialoGPT-large": (["input_ids"], 11, True, "gpt2"),
     # Reformer
     #"google/reformer-enwik8": (["input_ids"], 11, False, "bert"),
-    #"google/reformer-crime-and-punishment": (["input_ids"], 11, False, "bert"),
+    "google/reformer-crime-and-punishment": (["input_ids"], 11, False, "bert"),
     # MarianMT
-    #"Helsinki-NLP/opus-mt-ROMANCE-en": (["input_ids"], 12, False, "bert"),
+    "Helsinki-NLP/opus-mt-ROMANCE-en": (["input_ids"], 12, False, "bert"),
     # Longformer
     #"allenai/longformer-base-4096": (["input_ids"], 12, False, "bert"),
     #"allenai/longformer-large-4096": (["input_ids"], 12, False, "bert"),
+
+    # new models that can not export to onnx
+    "funnel-transformer/small": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/small-base": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/medium": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/medium-base": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/intermediate": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/intermediate-base": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/large": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/large-base": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/xlarge": (["input_ids"], 12, True, "bert"),
+    "funnel-transformer/xlarge-base": (["input_ids"], 12, True, "bert"),
+    "microsoft/deberta-base": (["input_ids"], 12, True, "bert"),
+    "microsoft/deberta-large": (["input_ids"], 12, True, "bert"),
 }
